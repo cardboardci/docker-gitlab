@@ -1,0 +1,10 @@
+---
+name: Docker GitLab
+slug: docker-gitlab
+project: cardboardci
+namespace: []
+description: Lab wraps Git or Hub, making it simple to clone, fork, and interact with repositories on GitLab.
+license:
+  name: MIT
+tags:
+  - docker
