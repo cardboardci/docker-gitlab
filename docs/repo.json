@@ -1,8 +1,0 @@
-{
-  "name": "docker-gitlab",
-  "tagline": "Lab wraps Git or Hub, making it simple to clone, fork, and interact with repositories on GitLab.",
-  "license": {
-    "name": "MIT"
-  },
-  "tags": ["docker", "gitlab", "lab", "git", "source-control"]
-}
