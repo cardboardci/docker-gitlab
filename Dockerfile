@@ -10,6 +10,8 @@ RUN curl -SL "https://github.com/github/hub/releases/download/v${VERSION}/hub-li
 RUN mv /tmp/bin/* /usr/local/bin/
 RUN curl -s "https://raw.githubusercontent.com/zaquestion/lab/master/install.sh" | bash
 
+USER cardboardci
+
 ##
 ## Image Metadata
 ##
