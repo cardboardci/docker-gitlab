@@ -1,14 +1,23 @@
-FROM cardboardci/ci-core:focal
+FROM cardboardci/ci-core@sha256:5b93f4c8cc1ddaa809f9c27d0a865a974ccb43e5e3d38334df1b0d77ea1843fb
 USER root
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG VERSION=2.6.0
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates=20180409 git=1:2.17.1-1ubuntu0.4 openssh-client=1:7.6p1-4ubuntu0.3 vim-nox=2:8.0.1453-1ubuntu1.1 curl=7.58.0-2ubuntu3.7 && rm -rf /var/lib/apt/lists/*
-RUN curl -SL "https://github.com/github/hub/releases/download/v${VERSION}/hub-linux-amd64-${VERSION}.tgz" | tar xvz --strip-components 1 -C /tmp/
-RUN mv /tmp/bin/* /usr/local/bin/
-RUN curl -s "https://raw.githubusercontent.com/zaquestion/lab/master/install.sh" | bash
+
+COPY provision/pkglist /cardboardci/pkglist
+RUN apt-get update \
+    && xargs -a /cardboardci/pkglist apt-get install --no-install-recommends -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sSL "https://github.com/github/hub/releases/download/v${VERSION}/hub-linux-amd64-${VERSION}.tgz" -o /tmp/hub.tgz \
+    && mkdir -p /tmp/hub \
+    && tar xfz /tmp/hub.tgz --strip-components=1 -C /tmp/hub \
+    && mv /tmp/hub/bin/* /usr/local/bin/ \
+    && chmod +x /usr/local/bin/hub \
+    && curl -s "https://raw.githubusercontent.com/zaquestion/lab/master/install.sh" -o /tmp/lab.sh \
+    && bash /tmp/lab.sh
 
 USER cardboardci
 
