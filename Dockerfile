@@ -11,9 +11,13 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -SL "https://github.com/github/hub/releases/download/v${VERSION}/hub-linux-amd64-${VERSION}.tgz" | tar xvz --strip-components 1 -C /tmp/ \
-    && mv /tmp/bin/* /usr/local/bin/ \
-    && curl -s "https://raw.githubusercontent.com/zaquestion/lab/master/install.sh" | bash
+RUN curl -sSL "https://github.com/github/hub/releases/download/v${VERSION}/hub-linux-amd64-${VERSION}.tgz" -o /tmp/hub.tgz \
+    && mkdir -p /tmp/hub \
+    && tar xfz /tmp/hub.tgz --strip-components=1 -C /tmp/hub \
+    && mv /tmp/hub/bin/* /usr/local/bin/ \
+    && chmod +x /usr/local/bin/hub \
+    && curl -s "https://raw.githubusercontent.com/zaquestion/lab/master/install.sh" -o /tmp/lab.sh \
+    && bash /tmp/lab.sh
 
 USER cardboardci
 
