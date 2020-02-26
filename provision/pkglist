@@ -2,4 +2,4 @@ ca-certificates=20190110
 git=1:2.25.0-1ubuntu1
 openssh-client=1:8.1p1-5
 vim-nox=2:8.1.2269-1ubuntu1
-curl=7.67.0-2ubuntu1
+curl=7.68.0-1ubuntu1
