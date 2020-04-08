@@ -1,4 +1,4 @@
-ca-certificates=20190110
+ca-certificates=20190110ubuntu1
 git=1:2.25.1-1ubuntu1
 openssh-client=1:8.2p1-4
 vim-nox=2:8.1.2269-1ubuntu4
