@@ -1,0 +1,17 @@
+slug: docker-gitlab
+description: Lab wraps Git or Hub, making it simple to clone, fork, and interact with repositories on GitLab.
+project: cardboardci
+namespace: docker
+status: archived
+icon: icon.svg
+license:
+  type: MIT
+  content: Jonathan Beverly <jrbeverly>
+  year: 2019
+topics: |-
+  [
+    "dockerfile",
+    "gitlab",
+    "gitlabcli",
+    "source-control"
+  ]
